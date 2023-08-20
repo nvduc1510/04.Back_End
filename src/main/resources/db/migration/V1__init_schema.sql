@@ -1,0 +1,163 @@
+CREATE TABLE IF NOT EXISTS `employees` (
+    employee_id bigint(20) NOT NULL AUTO_INCREMENT,
+    department_id bigint(20) NOT NULL,
+    employee_name VARCHAR(100) NOT NULL,
+    employee_name_kana VARCHAR(255) DEFAULT NULL,
+    employee_birth_date DATE DEFAULT NULL,
+    employee_email VARCHAR(50) NOT NULL,
+    employee_telephone VARCHAR(50) DEFAULT NULL,
+    employee_login_id VARCHAR(50) NOT NULL,
+    employee_login_password VARCHAR(100) DEFAULT NULL,
+    PRIMARY KEY (`employee_id`) USING BTREE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS departments (
+                                           department_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                           department_name VARCHAR(255) NOT NULL
+    );
+
+CREATE TABLE certifications (
+                                certification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                certification_name VARCHAR(255) NOT NULL,
+                                certification_level INT NOT NULL
+);
+
+CREATE TABLE employees_certifications (
+                                          employee_certification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                          employee_id BIGINT NOT NULL,
+                                          certification_id BIGINT NOT NULL,
+                                          start_date DATE NOT NULL,
+                                          end_date DATE NOT NULL,
+                                          score FLOAT NOT NULL,
+                                          FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
+                                          FOREIGN KEY (certification_id) REFERENCES certifications(certification_id)
+);
+
+INSERT INTO certifications (certification_name, certification_level)
+VALUES
+    ('Trình độ tiếng nhật N1', 1),
+    ('Trình độ tiếng nhật N2', 2),
+    ('Trình độ tiếng nhật N3', 2),
+    ('Trình độ tiếng nhật N4', 3),
+    ('Trình độ tiếng nhật N5', 3);
+
+INSERT INTO departments (department_name)
+VALUES
+    ('TMO '),
+    ('Dev 2'),
+    ('Dev 3'),
+    ('Dev 4'),
+    ('Dev 5'),
+    ('Dev 6'),
+    ('Dev 7'),
+    ('Dev 8'),
+    ('Dev 9');
+
+INSERT INTO employees (department_id, employee_name, employee_name_kana, employee_birth_date, employee_email,
+                       employee_telephone, employee_login_id, employee_login_password)
+VALUES (1, 'Administrator', NULL, NULL, 'la@luvina.net', NULL, 'admin','$2a$10$r.XIN4K9vTioiuYQwaTop.UVQ5r5FvrKk2V5Orm9Hc6n4i9Tvjthy'),
+       (2, 'Jane Smith', 'ジェーン スミス', '1995-02-15', 'jane.smith@example.com', '987654321', 'janesmith', 'password456'),
+       (3, 'Michael Johnson', 'マイケル ジョンソン', '1985-08-22', 'michael.johnson@example.com', '555555555', 'michaeljohnson', 'password789'),
+       (4, 'Emma Davis', 'エマ デービス', '1992-06-30', 'emma.davis@example.com', '111111111', 'emmadavis', 'password123'),
+       (5, 'William Wilson', 'ウィリアム ウィルソン', '1998-04-10', 'william.wilson@example.com', '222222222', 'williamwilson', 'password456'),
+       (6, 'Olivia Taylor', 'オリビア テイラー', '1993-11-25', 'olivia.taylor@example.com', '333333333', 'oliviataylor', 'password789'),
+       (7, 'Christopher Martin', 'クリストファー マーティン', '1990-02-14', 'christopher.martin@example.com', '444444444', 'christophermartin', 'password123'),
+       (8, 'Jessica Anderson', 'ジェシカ アンダーソン', '1992-07-30', 'jessica.anderson@example.com', '555555555', 'jessicaanderson', 'password456'),
+       (9, 'Daniel Clark', 'ダニエル クラーク', '1987-12-09', 'daniel.clark@example.com', '666666666', 'danielclark', 'password789'),
+       (9, 'Sophia Turner', 'ソフィア ターナー', '1995-04-23', 'sophia.turner@example.com', '777777777', 'sophiaturner', 'password123'),
+       (2, 'Matthew Young', 'マシュー ヤング', '1993-09-18', 'matthew.young@example.com', '888888888', 'matthewyoung', 'password456'),
+       (2, 'Ava Harris', 'アヴァ ハリス', '1989-11-02', 'ava.harris@example.com', '999999999', 'avaharris', 'password789'),
+       (3, 'James Thompson', 'ジェームズ トンプソン', '1991-03-27', 'james.thompson@example.com', '111111111', 'jamesthompson', 'password123'),
+       (4, 'Oliver Lee', 'オリバー リー', '1988-08-10', 'oliver.lee@example.com', '222222222', 'oliverlee', 'password456'),
+       (5, 'Emma Lewis', 'エマ ルイス', '1994-01-25', 'emma.lewis@example.com', '333333333', 'emmalewis', 'password789'),
+       (1, 'Logan Walker', 'ローガン ウォーカー', '1992-05-18', 'logan.walker@example.com', '444444444', 'loganwalker', 'password123'),
+       (1, 'Grace King', 'グレース キング', '1993-10-11', 'grace.king@example.com', '555555555', 'graceking', 'password456'),
+       (2, 'Benjamin Turner', 'ベンジャミン ターナー', '1990-07-26', 'benjamin.turner@example.com', '666666666', 'benjaminturner', 'password789'),
+       (1, 'Chloe Carter', 'クロエ カーター', '1995-01-09', 'chloe.carter@example.com', '777777777', 'chloecarter', 'password123'),
+       (2, 'Andrew Adams', 'アンドリュー アダムズ', '1991-04-24', 'andrew.adams@example.com', '888888888', 'andrewadams', 'password456'),
+       (2, 'Samantha Wilson', 'サマンサ ウィルソン', '1989-10-08', 'samantha.wilson@example.com', '999999999', 'samanthawilson', 'password789'),
+       (2, 'Jacob Stewart', 'ジェイコブ スチュワート', '1994-02-21', 'jacob.stewart@example.com', '111111111', 'jacobstewart', 'password123'),
+       (3, 'Natalie Morris', 'ナタリー モリス', '1988-07-06', 'natalie.morris@example.com', '222222222', 'nataliemorris', 'password456'),
+       (4, 'Ethan Powell', 'イーサン パウエル', '1992-12-19', 'ethan.powell@example.com', '333333333', 'ethanpowell', 'password789'),
+       (5, 'Isabella Brooks', 'イザベラ ブルックス', '1993-05-03', 'isabella.brooks@example.com', '444444444', 'isabellabrooks', 'password123'),
+       (6, 'Liam Davis', 'リアム デービス', '1989-09-16', 'liam.davis@example.com', '555555555', 'liamdavis', 'password456'),
+       (2, 'Avery Mitchell', 'エイブリー ミッチェル', '1991-12-31', 'avery.mitchell@example.com', '666666666', 'averymitchell', 'password789'),
+       (2, 'Harper Anderson', 'ハーパー アンダーソン', '1994-06-14', 'harper.anderson@example.com', '777777777', 'harperanderson', 'password123'),
+       (2, 'Daniel White', 'ダニエル ホワイト', '1990-11-27', 'daniel.white@example.com', '888888888', 'danielwhite', 'password456'),
+       (3, 'Sophia Thompson', 'ソフィア トンプソン', '1988-03-12', 'sophia.thompson@example.com', '999999999', 'sophiathompson', 'password789'),
+       (2, 'Avery Mitchell 1', 'エイブリー ミッチェル 1', '1991-12-31', 'avery.mitchell1@example.com', '666666666', 'averymitchell1', 'password789'),
+       (2, 'Harper Anderson 1', 'ハーパー アンダーソン 1', '1994-06-14', 'harper.anderson1@example.com', '777777777', 'harperanderson1', 'password123'),
+       (2, 'Daniel White 1', 'ダニエル ホワイト 1', '1990-11-27', 'daniel.white1@example.com', '888888888', 'danielwhite1', 'password456'),
+       (3, 'Sophia Thompson 1', 'ソフィア トンプソン 1', '1988-03-12', 'sophia.thompson1@example.com', '999999999', 'sophiathompson1', 'password789'),
+       (2, 'Emma Johnson 1', 'エマ ジョンソン 1', '1993-02-28', 'emma.johnson1@example.com', '111111111', 'emmajohnson1', 'password123'),
+       (3, 'Olivia Lee 1', 'オリビア リー 1', '1992-07-10', 'olivia.lee1@example.com', '222222222', 'oliviale 1', 'password456'),
+       (2, 'Noah Smith 1', 'ノア スミス 1', '1990-09-15', 'noah.smith1@example.com', '333333333', 'noahsmith1', 'password789'),
+       (2, 'Liam Kim 1', 'リアム キム 1', '1995-11-02', 'liam.kim1@example.com', '444444444', 'liamkim1', 'password123'),
+       (3, 'Mia Yamamoto 1', 'ミア 山本 1', '1989-04-19', 'mia.yamamoto1@example.com', '555555555', 'miayamamoto1', 'password456'),
+       (2, 'Sophia Suzuki 1', 'ソフィア 鈴木 1', '1992-08-25', 'sophia.suzuki1@example.com', '666666666', 'sophiasuzuki1', 'password789'),
+       (2, 'William Inoue 1', 'ウィリアム 井上 1', '1991-12-31', 'william.inoue1@example.com', '777777777', 'williaminoue1', 'password123'),
+       (2, 'Isabella Takahashi 1', 'イザベラ 高橋 1', '1994-06-14', 'isabella.takahashi1@example.com', '888888888', 'isabellatakahashi1', 'password456'),
+       (3, 'James Sato 1', 'ジェームズ 佐藤 1', '1990-11-27', 'james.sato1@example.com', '999999999', 'jamessato1', 'password789'),
+       (2, 'Benjamin Nakamura 1', 'ベンジャミン 中村 1', '1988-03-12', 'benjamin.nakamura1@example.com', '111111111', 'benjaminnakamura1', 'password123'),
+       (2, 'Sophia Tanaka 1', 'ソフィア 田中 1', '1993-02-28', 'sophia.tanaka1@example.com', '222222222', 'sophiatanaka1', 'password456'),
+       (3, 'Mason Kobayashi 1', 'メイソン 小林 1', '1992-07-10', 'mason.kobayashi1@example.com', '333333333', 'masonkobayashi1', 'password789'),
+       (2, 'Daniel Ito 1', 'ダニエル 伊藤 1', '1990-09-15', 'daniel.ito1@example.com', '444444444', 'danielito1', 'password123'),
+       (2, 'Liam Hara 1', 'リアム 原 1', '1995-11-02', 'liam.hara1@example.com', '555555555', 'liamhara1', 'password456'),
+       (3, 'Emma Hayashi 1', 'エマ 林 1', '1989-04-19', 'emma.hayashi1@example.com', '666666666', 'emmahayashi1', 'password789'),
+       (2, 'Olivia Sasaki 1', 'オリビア 佐々木 1', '1992-08-25', 'olivia.sasaki1@example.com', '777777777', 'oliviasasaki1', 'password123'),
+       (2, 'Mia Suzuki 1', 'ミア 鈴木 1', '1991-12-31', 'mia.suzuki1@example.com', '888888888', 'miasuzuki1', 'password456');
+
+
+INSERT INTO employees_certifications (employee_id, certification_id, start_date, end_date, score)
+VALUES (1, 1, '2022-01-01', '2022-12-31', 95.5),
+       (2, 1, '2022-01-01', '2022-12-31', 90),
+       (3, 1, '2022-01-01', '2022-12-31', 100),
+       (4, 1, '2022-01-01', '2022-12-31', 100),
+       (5, 1, '2022-01-01', '2022-12-31', 90),
+       (6, 1, '2022-01-01', '2022-12-31', 95.5),
+       (7, 2, '2022-01-01', '2022-12-31', 87),
+       (8, 2, '2022-01-01', '2022-12-31', 91),
+       (9, 2, '2022-01-01', '2022-12-31', 93),
+       (10, 3, '2022-01-01', '2022-12-31', 85),
+       (11, 3, '2022-01-01', '2022-12-31', 89),
+       (12, 3, '2022-01-01', '2022-12-31', 94),
+       (13, 3, '2022-01-01', '2022-12-31', 88),
+       (14, 3, '2022-01-01', '2022-12-31', 90),
+       (15, 3, '2022-01-01', '2022-12-31', 91),
+       (16, 4, '2022-01-01', '2022-12-31', 86),
+       (17, 5, '2022-01-01', '2022-12-31', 89),
+       (18, 5, '2022-01-01', '2022-12-31', 92),
+       (19, 5, '2022-01-01', '2022-12-31', 84),
+       (20, 3, '2022-01-01', '2022-12-31', 88),
+       (21, 3, '2022-01-01', '2022-12-31', 91),
+       (22, 4, '2022-01-01', '2022-12-31', 93),
+       (23, 2, '2022-01-01', '2022-12-31', 86),
+       (24, 1, '2022-01-01', '2022-12-31', 90),
+       (25, 5, '2022-01-01', '2022-12-31', 84),
+       (26, 3, '2022-01-01', '2022-12-31', 88),
+       (27, 4, '2022-01-01', '2022-12-31', 91),
+       (28, 4, '2022-01-01', '2022-12-31', 93),
+       (29, 5, '2022-01-01', '2022-12-31', 86),
+       (30, 2, '2022-01-01', '2022-12-31', 90),
+       (31, 1, '2022-02-01', '2022-11-30', 92),
+       (32, 1, '2022-03-01', '2022-10-31', 88),
+       (33, 1, '2022-04-01', '2022-09-30', 95),
+       (34, 1, '2022-05-01', '2022-08-31', 91),
+       (35, 1, '2022-06-01', '2022-07-31', 86),
+       (36, 2, '2022-02-01', '2022-11-30', 90),
+       (37, 2, '2022-03-01', '2022-10-31', 94),
+       (38, 2, '2022-04-01', '2022-09-30', 89),
+       (39, 2, '2022-05-01', '2022-08-31', 93),
+       (40, 2, '2022-06-01', '2022-07-31', 87),
+       (41, 3, '2022-02-01', '2022-11-30', 88),
+       (42, 3, '2022-03-01', '2022-10-31', 91),
+       (43, 3, '2022-04-01', '2022-09-30', 94),
+       (44, 3, '2022-05-01', '2022-08-31', 89),
+       (45, 3, '2022-06-01', '2022-07-31', 92),
+       (46, 4, '2022-02-01', '2022-11-30', 86),
+       (47, 4, '2022-03-01', '2022-10-31', 90),
+       (48, 4, '2022-04-01', '2022-09-30', 93),
+       (49, 4, '2022-05-01', '2022-08-31', 87),
+       (50, 4, '2022-06-01', '2022-07-31', 91),
+       (51, 5, '2022-02-01', '2022-11-30', 89);
