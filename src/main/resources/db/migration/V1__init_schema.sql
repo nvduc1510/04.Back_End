@@ -1,37 +1,37 @@
 CREATE TABLE IF NOT EXISTS `employees` (
-    employee_id bigint(20) NOT NULL AUTO_INCREMENT,
+    employee_id BIGINT(20) NOT NULL AUTO_INCREMENT,
     department_id bigint(20) NOT NULL,
-    employee_name VARCHAR(100) NOT NULL,
+    employee_name VARCHAR(255) NOT NULL,
     employee_name_kana VARCHAR(255) DEFAULT NULL,
     employee_birth_date DATE DEFAULT NULL,
-    employee_email VARCHAR(50) NOT NULL,
+    employee_email VARCHAR(255) NOT NULL,
     employee_telephone VARCHAR(50) DEFAULT NULL,
     employee_login_id VARCHAR(50) NOT NULL,
-    employee_login_password VARCHAR(100) DEFAULT NULL,
+    employee_login_password VARCHAR(60) DEFAULT NULL,
     PRIMARY KEY (`employee_id`) USING BTREE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS departments (
-                                           department_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                           department_name VARCHAR(255) NOT NULL
-    );
+    department_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    department_name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE certifications (
-                                certification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                certification_name VARCHAR(255) NOT NULL,
-                                certification_level INT NOT NULL
+    certification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    certification_name VARCHAR(255) NOT NULL,
+    certification_level INT NOT NULL
 );
 
 CREATE TABLE employees_certifications (
-                                          employee_certification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                          employee_id BIGINT NOT NULL,
-                                          certification_id BIGINT NOT NULL,
-                                          start_date DATE NOT NULL,
-                                          end_date DATE NOT NULL,
-                                          score FLOAT NOT NULL,
-                                          FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
-                                          FOREIGN KEY (certification_id) REFERENCES certifications(certification_id)
+    employee_certification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    employee_id BIGINT NOT NULL,
+    certification_id BIGINT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    score FLOAT NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
+    FOREIGN KEY (certification_id) REFERENCES certifications(certification_id)
 );
 
 INSERT INTO certifications (certification_name, certification_level)

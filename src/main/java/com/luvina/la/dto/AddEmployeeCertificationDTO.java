@@ -1,9 +1,12 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * AddEmployeeCertificationDTO.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 /**
  * Lớp `AddEmployeeCertificationDTO` đại diện cho đối tượng dùng để chứa thông tin cơ bản chứng chỉnh nhân viên.
  * @author nvduc

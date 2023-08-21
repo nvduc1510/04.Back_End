@@ -1,6 +1,9 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * EmployeeDTO.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.dto;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -8,7 +11,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
-
+/**
+ * Chứa thông tin về một nhân viên.
+ */
 @Data
 @AllArgsConstructor
 public class EmployeeDTO implements Serializable {

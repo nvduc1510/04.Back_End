@@ -1,5 +1,9 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * EmployeeRepository.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.repository;
-
 import com.luvina.la.dto.EmployeeDTO;
 import com.luvina.la.entity.Employee;
 
@@ -12,7 +16,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
+/**
+ * Giao diện kho lưu trữ để truy cập và quản lý dữ liệu EmployeeRepository trong cơ sở dữ liệu.
+ * @author nvduc
+ */
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
@@ -36,20 +43,29 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
             "CASE WHEN :ordEndDate = 'DESC' THEN ec.endDate END DESC" )
 
     /**
-     * Phương thức để lấy danh sách các đối tượng ListEmployeeDTO dựa trên các tham số và phân trang.
-     * @param employeeName Tên nhân viên
-     * @param departmentId ID của phòng ban
-     * @param ordEmployeeName Thứ tự sắp xếp cho tên nhân viên (ASC: tăng dần, DESC: giảm dần)
-     * @param ordCertificationName Thứ tự sắp xếp cho tên chứng chỉ (ASC: tăng dần, DESC: giảm dần)
-     * @param ordEndDate Thứ tự sắp xếp cho ngày kết thúc (ASC: tăng dần, DESC: giảm dần)
-     * @param pageable Đối tượng phân trang
-     * @return Trang (Page) chứa danh sách các đối tượng ListEmployeeDTO
+     * Lấy danh sách DTO của nhân viên dựa trên các thông tin truy vấn.
+     *
+     * @param employeeName         Tên của nhân viên.
+     * @param departmentId         ID của phòng ban.
+     * @param ordEmployeeName     Thứ tự sắp xếp theo tên nhân viên.
+     * @param ordCertificationName Thứ tự sắp xếp theo tên chứng chỉ.
+     * @param ordEndDate           Thứ tự sắp xếp theo ngày kết thúc.
+     * @param pageable             Thông tin phân trang.
+     * @return Trang chứa danh sách DTO của nhân viên.
      */
-    Page<EmployeeDTO> getListEmployeeDTO(@Param("employeeName") String employeeName ,
-                                         @Param("departmentId") Long departmentId,
-                                         @Param("ordEmployeeName") String ordEmployeeName,
-                                         @Param("ordCertificationName") String ordCertificationName,
-                                         @Param("ordEndDate") String ordEndDate,
-                                         Pageable pageable);
+    Page<EmployeeDTO> getListEmployeeDTO(
+            @Param("employeeName") String employeeName,
+            @Param("departmentId") Long departmentId,
+            @Param("ordEmployeeName") String ordEmployeeName,
+            @Param("ordCertificationName") String ordCertificationName,
+            @Param("ordEndDate") String ordEndDate,
+            Pageable pageable);
+
+    /**
+     * Kiểm tra sự tồn tại của một nhân viên dựa trên employeeLoginId.
+     *
+     * @param employeeLoginId Tên đăng nhập của nhân viên.
+     * @return `true` nếu tồn tại, `false` nếu không tồn tại.
+     */
     boolean existsByEmployeeLoginId(String employeeLoginId);
 }

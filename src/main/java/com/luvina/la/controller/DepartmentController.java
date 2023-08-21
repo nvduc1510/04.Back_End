@@ -1,5 +1,9 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * DepartmentController.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.controller;
-
 import com.luvina.la.entity.Department;
 import com.luvina.la.repository.DepartmentRepository;
 import com.luvina.la.service.DepartmentService;
@@ -13,6 +17,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+/**
+* Xử lý thông tin liên quan đến department
+* @author nvduc
+*/
 
 @RestController
 @RequestMapping("/departments")
@@ -21,7 +29,9 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     /**
-     * lay tat ca phong ban
+     * Lấy danh sách các phòng ban.
+     *
+     * @return Phản hồi HTTP chứa danh sách phòng ban hoặc thông báo lỗi.
      */
     @GetMapping
     public ResponseEntity<?> getAllDepartment() {

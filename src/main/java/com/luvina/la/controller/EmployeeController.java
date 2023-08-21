@@ -1,6 +1,9 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * EmployeeController.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.controller;
-
-
 import com.luvina.la.dto.AddEmployeeDTO;
 import com.luvina.la.dto.DetailEmployeeDTO;
 import com.luvina.la.dto.EmployeeDTO;
@@ -27,6 +30,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    /**
+     * Xử lý ngoại lệ do hợp lệ hóa dữ liệu (ValidatorsException) xảy ra.
+     *
+     * @param ex Ngoại lệ ValidatorsException đã xảy ra.
+     * @return Phản hồi HTTP chứa thông tin về ngoại lệ.
+     */
     private ResponseEntity<Map<String, Object>> handleValidatorException(ValidatorsException ex) {
         Map<String, Object> response = new HashMap<>();
         Map<String, Object> message = new HashMap<>();
@@ -37,6 +46,18 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 
+    /**
+     * Lấy danh sách các nhân viên dựa trên các tham số tùy chọn.
+     *
+     * @param employeeName         Tên nhân viên để tìm kiếm.
+     * @param departmentId         ID của phòng ban để lọc theo .
+     * @param ordEmployeeName      Tùy chọn sắp xếp theo tên nhân viên.
+     * @param ordCertificationName Tùy chọn sắp xếp theo tên chứng chỉ.
+     * @param ordEndDate           Tùy chọn sắp xếp theo ngày kết thúc.
+     * @param offset               Vị trí bắt đầu của kết quả trả về .
+     * @param limit                Số lượng kết quả trả về tối đa .
+     * @return Phản hồi HTTP chứa danh sách nhân viên và thông tin phân trang.
+     */
     @GetMapping("/")
     public ResponseEntity<?> getAllEmployee(
             @RequestParam(required = false, defaultValue = "") String employeeName,
@@ -85,6 +106,12 @@ public class EmployeeController {
         }
     }
 
+    /**
+     * Lấy thông tin của một nhân viên dựa trên ID nhân viên.
+     *
+     * @param employeeId ID của nhân viên cần lấy thông tin.
+     * @return Phản hồi HTTP chứa thông tin chi tiết về nhân viên.
+     */
     @GetMapping("/{employeeId}")
     public ResponseEntity<?> getEmployeeById(@PathVariable long employeeId) {
         DetailEmployeeDTO detailEmployeeDTO;
@@ -97,6 +124,12 @@ public class EmployeeController {
 
     }
 
+    /**
+     * Xóa thông tin của một nhân viên dựa trên ID nhân viên.
+     *
+     * @param employeeId ID của nhân viên cần xóa thông tin.
+     * @return Phản hồi HTTP xác nhận việc xóa thông tin nhân viên.
+     */
     @DeleteMapping("/{employeeId}")
     public ResponseEntity<?> deleteEmployeeById (@PathVariable long employeeId) {
         Optional <Employee> employee ;
@@ -117,6 +150,13 @@ public class EmployeeController {
         }
     }
 
+    /**
+     * Cập nhật thông tin của một nhân viên dựa trên ID nhân viên.
+     *
+     * @param employeeId   ID của nhân viên cần cập nhật thông tin.
+     * @param employeeDTO Thông tin nhân viên mới để cập nhật.
+     * @return Phản hồi HTTP xác nhận việc cập nhật thông tin nhân viên.
+     */
     @PutMapping("/{employeeId}")
     public ResponseEntity<?> updateEmployee(
             @PathVariable Long employeeId,
@@ -134,7 +174,6 @@ public class EmployeeController {
             message.put("params", messages);
             response.put("message", message);
             return ResponseEntity.ok(response);
-
         } catch (ValidatorsException ex) {
           return handleValidatorException(ex);
         }

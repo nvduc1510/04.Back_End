@@ -1,5 +1,9 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * Validators.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.payload;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;

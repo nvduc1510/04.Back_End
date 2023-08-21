@@ -1,12 +1,18 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * DetailEmployeeDTO.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
-
+/**
+ * Chứa thông tin chi tiết về một nhân viên.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -1,12 +1,18 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * Certification.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * Thể hiện một chứng chỉ trong hệ thống.
+ */
 @Entity
 @Data
 @Table(name = "certifications")

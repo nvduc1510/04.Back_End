@@ -1,5 +1,9 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * Employee.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.entity;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -11,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-
+/**
+ * Thể hiện một nhân viên trong hệ thống.
+ */
 @Entity
 @Table(name = "employees")
 @Data
@@ -51,7 +57,6 @@ public class Employee implements Serializable {
     @JsonIgnore
     private Department department;
 
-//    @OneToMany(fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JsonBackReference
     private List<EmployeeCertification> employeeCertifications;

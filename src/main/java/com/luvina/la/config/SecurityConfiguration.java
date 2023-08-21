@@ -49,39 +49,39 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//
-//        // Enable CORS and disable CSRF
-//        http.cors().and().csrf().disable();
-//
-//        // Apply headers and disable frameOptions
-//        http.headers().frameOptions().disable();
-//
-//        // Set session management to stateless
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//
-//        // Set permissions on endpoints
-//        http.authorizeRequests(authz -> authz
-//                // public endpoints
-//                .antMatchers(Constants.ENDPOINTS_PUBLIC).permitAll()
-//                // private endpoints with roles
-//                .antMatchers(Constants.ENDPOINTS_WITH_ROLE).hasRole("USER")
-//                .anyRequest().authenticated()
-//        );
-//
-//        // Set unauthorized requests exception handler
-//        http.exceptionHandling().authenticationEntryPoint(new AuthEntryPoint());
-//
-//        // Token filter
-//        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//
-//        return http.build();
-        http
-                // Vô hiệu hóa bảo mật
-                .authorizeRequests().anyRequest().permitAll()
-                .and()
-                .csrf().disable();
+
+        // Enable CORS and disable CSRF
+        http.cors().and().csrf().disable();
+
+        // Apply headers and disable frameOptions
+        http.headers().frameOptions().disable();
+
+        // Set session management to stateless
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // Set permissions on endpoints
+        http.authorizeRequests(authz -> authz
+                // public endpoints
+                .antMatchers(Constants.ENDPOINTS_PUBLIC).permitAll()
+                // private endpoints with roles
+                .antMatchers(Constants.ENDPOINTS_WITH_ROLE).hasRole("USER")
+                .anyRequest().authenticated()
+        );
+
+        // Set unauthorized requests exception handler
+        http.exceptionHandling().authenticationEntryPoint(new AuthEntryPoint());
+
+        // Token filter
+        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+//        http
+//                // Vô hiệu hóa bảo mật
+//                .authorizeRequests().anyRequest().permitAll()
+//                .and()
+//                .csrf().disable();
+//
+//        return http.build();
     }
 
     // Used by spring security if CORS is enabled.

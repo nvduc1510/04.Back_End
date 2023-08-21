@@ -1,5 +1,9 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * CertificationController.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.controller;
-
 import com.luvina.la.entity.Certification;
 import com.luvina.la.entity.Department;
 import com.luvina.la.service.CertificationService;
@@ -13,13 +17,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+* Xử lý các thông tin liên quan đến certification
+* @author nvduc
+*/
 @RestController
 @RequestMapping("/certification")
 public class CertificationController {
     @Autowired
     private CertificationService certificationService;
 
+    /**
+     * Lấy danh sách các chứng chỉ.
+     *
+     * @return Phản hồi HTTP chứa danh sách chứng chỉ hoặc thông báo lỗi.
+     */
     @GetMapping()
     public ResponseEntity<?> getALLCertification(){
         List<Certification> certifications = certificationService.getAllCertification();

@@ -1,11 +1,14 @@
+/*
+ * Copyright(C) 2023 Luvina Software Company
+ *
+ * ValidatorsException.java, July 5, 2023 nvduc
+ */
 package com.luvina.la.payload;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
 /**
  * Lớp ngoại lệ (exception) cho các trường hợp xác thực không hợp lệ.
  */
